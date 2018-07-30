@@ -1,30 +1,34 @@
 <template>
   <div class="page-tabbar">
+
     <!--header位置-->
     <bheader v-bind:title="selected"></bheader>
-    <!--每一个控制器可自定义-->
-    <mt-tab-container class="page-tabbar-container" v-model="selected">
-      <mt-tab-container-item id="事业">
-        <!--自定义组件结合-->
-        <mt-cell v-for="n in 9" :title="n + '事业任务'" :key="n"/>
-      </mt-tab-container-item>
-      <mt-tab-container-item id="资讯">
-        <!--自定义组件进行结合成页面-->
-        <div>
-          <newsSelectedBar></newsSelectedBar>
-        </div>
-      </mt-tab-container-item>
-      <mt-tab-container-item id="工具">
-        <div>
-          这是一个工具页面，具体自己定制
-        </div>
-      </mt-tab-container-item>
-      <mt-tab-container-item id="我的">
-        <mt-cell v-for="n in 100" :title="n + '我的页面cell'" :key="n"/>
-      </mt-tab-container-item>
-    </mt-tab-container>
+    <div class="page-wrap">
+      <!--每一个控制器可自定义-->
+      <mt-tab-container class="page-tabbar-container" v-model="selected">
+        <mt-tab-container-item id="事业">
+          <!--自定义组件结合-->
+          <mt-cell v-for="n in 9" :title="n + '事业任务'" :key="n"/>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="资讯">
+          <!--自定义组件进行结合成页面-->
+          <div>
+            <newsSelectedBar></newsSelectedBar>
+          </div>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="工具">
+          <div>
+            这是一个工具页面，具体自己定制
+          </div>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="我的">
+          <mt-cell v-for="n in 100" :title="n + '我的页面cell'" :key="n"/>
+        </mt-tab-container-item>
+      </mt-tab-container>
+    </div>
 
-    <mt-tabbar v-model="selected" fixed>
+
+    <mt-tabbar v-model="selected" fixed="true">
       <mt-tab-item id="事业">
         <img slot="icon" src="../assets/100x100.png">
         事业
@@ -47,6 +51,7 @@
 
 <script>
   import newsSelectedBar from './NewsSelectedBar'
+
   export default {
     name: "AppTabbar",
     data() {
@@ -64,6 +69,11 @@
   .page-tabbar {
     overflow: hidden;
     height: 100vh;
+  }
+  .page-wrap {
+    overflow: auto;
+    height: 100%;
+    padding-bottom: 100px;
   }
 
 </style>

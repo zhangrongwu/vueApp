@@ -4,9 +4,11 @@
       <ul>
         <li v-for="(value, index) in list" class="news-list">
           <img  v-lazy=value.image class="news-list-image">
-          <p class="news-list-title">{{value.title}}}</p>
-          <p class="news-list-subTitle">{{value.subTitle}}</p>
-          <p class="news-list-date">{{value.date}}</p>
+          <div class="text_wrap">
+            <p class="news-list-title">{{value.title}}}</p>
+            <p class="news-list-subTitle">{{value.subTitle}}</p>
+            <p class="news-list-date">{{value.date}}</p>
+          </div>
         </li>
       </ul>
     </mt-loadmore>
@@ -98,14 +100,18 @@
 <style scoped>
   .newsList {
     width: 100%;
-    height: 500px;
+    height: 100%;
     background-color: white;
+    /*padding-bottom: 100px;*/
+    margin-bottom: 100px;
   }
 
   .news-list-image {
     margin-top: 10px;
     width: 180px;
     height: 140px;
+    /*float: left;*/
+    /*display: flex;*/
   }
 
   .news-list {
@@ -113,23 +119,48 @@
     color: blue;
     height: 160px;
     /*vertical-align: center;*/
+    list-style-type: none;
+    display: flex;
   }
 
   .news-list-title {
-    margin-left: 200px;
-    margin-right: 20px;
+    margin: 10px 10px 0px 10px;
     color: #333333;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 40px;
+    font-size: 15px;
   }
 
   .news-list-subTitle {
-    margin-left: 200px;
-    margin-right: 20px;
+    /*上下 左右*/
+    margin: 0 10px;
     color: #707274;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 40px;
+    font-size: 14px;
   }
 
   .news-list-date {
-    margin-left: 200px;
-    margin-right: 20px;
+    margin: 0 10px;
     color: #707274;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 20px;
+    font-size: 13px;
+  }
+  .text_wrap{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-around;*/
+    align-items: flex-start;
+    margin: 0 10px 0px 10px;
   }
 </style>
