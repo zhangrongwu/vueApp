@@ -2,14 +2,17 @@
   <div class="newsList">
     <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-load="allLoaded" ref="loadmore">
       <ul>
-        <li v-for="(value, index) in list" class="news-list">
-          <img  v-lazy=value.image class="news-list-image">
+        <li v-for="(value, index) in list" class="news-list" :key="value">
+          <img :src=value.image class="news-list-image">
           <div class="text_wrap">
             <p class="news-list-title">{{value.title}}}</p>
             <p class="news-list-subTitle">{{value.subTitle}}</p>
             <p class="news-list-date">{{value.date}}</p>
           </div>
+          <router-link :to="{name: 'newsDetail', query:{id: index}}">查看详情</router-link>
+          <router-link :to="{name: 'newsDetail', params:{id: index}}">查看详情2</router-link>
         </li>
+        <span></span>
       </ul>
     </mt-loadmore>
   </div>
@@ -149,7 +152,7 @@
   .news-list-date {
     margin: 0 10px;
     color: #707274;
-    display: -webkit-box;
+     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -159,8 +162,8 @@
   .text_wrap{
     display: flex;
     flex-direction: column;
-    /*justify-content: space-around;*/
-    align-items: flex-start;
+    justify-content: space-around;
+    /*align-items: flex-start;*/
     margin: 0 10px 0px 10px;
   }
 </style>

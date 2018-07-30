@@ -16,6 +16,7 @@ import viewMain from './components/viewMain.vue'
 import aheader from './components/Header.vue'
 import bheader from './components/HeaderB.vue'
 
+
 import {Loadmore} from 'mint-ui'
 import {Actionsheet} from 'mint-ui'
 import {Swipe, SwipeItem} from 'mint-ui'

@@ -37,6 +37,12 @@
     <div>
       <button @click="openTabbar">打开自定义的tabbar控制器</button>
     </div>
+    
+    <router-link :to="{name: 'login'}">router-link页面跳转</router-link>
+    
+    <router-view class="router-v"></router-view>
+    <button @click="testParams">点击传参数</button>
+    <button @click="notFound">进入404页面</button>
   </div>
 </template>
 
@@ -122,6 +128,15 @@
       },
       openTabbar: function () {
         this.$router.push({name:'appTabbar'})
+      },
+      testParams() {
+        this.$router.push({
+          // 传递参数
+          name:'newsDetail', query:{id:1, name:'query2'}, params:{id:2,name:'params2'}
+        });
+      },
+      notFound() {
+        this.$router.push({name: 'home'})
       }
     },
     mounted() {

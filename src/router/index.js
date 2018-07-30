@@ -5,8 +5,11 @@ import main from '@/containers/Main'
 import login from '@/containers/Login'
 import messageList from '@/containers/MessageList'
 import appTabbar from '@/containers/AppTabbar'
+import newsDetail from '@/containers/NewsDetail'
 import swipe from '@/containers/Swipe'
 import layzLoad from '@/containers/LayzLoad'
+
+import NotFound from '@/containers/notFound'
 
 Vue.use(Router)
 
@@ -42,6 +45,23 @@ export default new Router({
       path: '/appTabbar',
       name: 'appTabbar',
       component: appTabbar
+    },
+    {
+      path: '/newsDetail',
+      name: 'newsDetail',
+      component: newsDetail
+    },
+    {
+      // router重定向
+      path: '/re',
+      redirect: {name: 'appTabbar'},
+      component: appTabbar
+    },
+    {
+      // router 404页面
+      path: '*',
+      name: '*',
+      component: NotFound
     }
   ]
 })
