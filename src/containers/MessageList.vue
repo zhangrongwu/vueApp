@@ -3,7 +3,7 @@
     列表
     <Loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-load="allLoaded" ref="loadmore">
       <ul>
-        <li v-for="(item, index) in list" class="mint-loadmore-list">
+        <li v-for="(item, index) in list" class="mint-loadmore-list" :key="item">
          {{index}} {{item}}
         </li>
       </ul>

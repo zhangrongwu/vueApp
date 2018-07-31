@@ -3,7 +3,6 @@ import Router from 'vue-router'
 
 import main from '@/containers/Main'
 import login from '@/containers/Login'
-import messageList from '@/containers/MessageList'
 import appTabbar from '@/containers/AppTabbar'
 import newsDetail from '@/containers/NewsDetail'
 import swipe from '@/containers/Swipe'
@@ -27,11 +26,6 @@ export default new Router({
       component: login
     },
     {
-      path: '/messageList',
-      name: 'messageList',
-      component: messageList
-    },
-    {
       path: '/swipe',
       name: 'swipe',
       component: swipe
@@ -44,6 +38,9 @@ export default new Router({
     {
       path: '/appTabbar',
       name: 'appTabbar',
+      children: [
+       
+      ],
       component: appTabbar
     },
     {
@@ -59,8 +56,8 @@ export default new Router({
     },
     {
       // router 404页面
-      path: '*',
-      name: '*',
+      path:'*',
+      name:'*',
       component: NotFound
     }
   ]

@@ -18,9 +18,13 @@
 </script>
 
 <style scoped>
+ img {
+    width: 100%;
+    height: 100%;
+  }
   .banner {
     width: 100%;
-    height: 350px;
+    height: 300px;
   }
   .slide1 {
     color: azure;

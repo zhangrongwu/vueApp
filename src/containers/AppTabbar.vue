@@ -6,44 +6,19 @@
     <div class="page-wrap">
       <!--每一个控制器可自定义-->
       <mt-tab-container class="page-tabbar-container" v-model="selected">
-        <mt-tab-container-item id="事业">
+        <mt-tab-container-item :id="item.id" v-for="item in tabList" :key="item.id">
           <!--自定义组件结合-->
-          <mt-cell v-for="n in 9" :title="n + '事业任务'" :key="n"/>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="资讯">
-          <!--自定义组件进行结合成页面-->
-          <div>
-            <newsSelectedBar></newsSelectedBar>
-          </div>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="工具">
-          <div>
-            这是一个工具页面，具体自己定制
-          </div>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="我的">
-          <mt-cell v-for="n in 100" :title="n + '我的页面cell'" :key="n"/>
-        </mt-tab-container-item>
+          <mt-cell v-for="n in 90" :title="n + '事业任务'" :key="n" v-if="item.id == '事业'" />
+              <newsSelectedBar v-if="item.id == '资讯'"></newsSelectedBar>
+          <div v-if="item.id == '工具'">这是一个工具页面，具体自己定制</div>
+          <mt-cell v-for="n in 100" :title="n + '我的页面cell'" :key="n" v-if="item.id == '我的'" />
+        </mt-tab-container-item>       
       </mt-tab-container>
     </div>
-
-
-    <mt-tabbar v-model="selected" fixed="true">
-      <mt-tab-item id="事业">
-        <img slot="icon" src="../assets/100x100.png">
-        事业
-      </mt-tab-item>
-      <mt-tab-item id="资讯">
-        <img slot="icon" src="../assets/100x100.png">
-        资讯
-      </mt-tab-item>
-      <mt-tab-item id="工具">
-        <img slot="icon" src="../assets/100x100.png">
-        工具
-      </mt-tab-item>
-      <mt-tab-item id="我的">
-        <img slot="icon" src="../assets/100x100.png">
-        我的
+    <mt-tabbar v-model="selected" :fixed="true">
+      <mt-tab-item :id="list.id" v-for="list in tabList" :key="list.id">
+        <img slot="icon" :src="list.img">
+        <span>{{list.id}}</span>
       </mt-tab-item>
     </mt-tabbar>
   </div>
@@ -54,13 +29,42 @@
 
   export default {
     name: "AppTabbar",
+    created() {
+        },
     data() {
       return {
-        selected: '事业'
+        selected: this.defines.tabBarItemSelected,
+        
+        tabList: [
+          {
+            id: '事业',
+            img: 'static/100x100.png'
+            // img: require('../assets/100x100.png')
+          },
+          {
+            id: '资讯',
+            img: 'static/100x100.png'
+          },
+          {
+            id: '工具',
+            img: 'static/100x100.png'
+          },
+          {
+            id: '我的',
+            img: 'static/100x100.png'
+          }
+        ]
       }
     },
     components: {
       'newsSelectedBar': newsSelectedBar
+    },
+    watch: {
+      selected: function(newValue, oldValue) {
+        // alert(this.tabBarItemSelected)
+        this.defines.settabBarItemSelected(newValue)
+        console.log('newValue, oldValue', newValue, oldValue)
+      }
     }
   }
 </script>

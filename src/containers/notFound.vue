@@ -1,6 +1,8 @@
 <template>
   <div>
-      页面丢失
+    <p>
+      404页面丢失...
+    </p>
   </div>
 </template>
 
@@ -19,5 +21,7 @@
 </script>
 
 <style scoped>
-
+p{
+  font-size: 25px;
+}
 </style>

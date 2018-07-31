@@ -1,20 +1,20 @@
 <template>
   <div class="newsList">
-    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-load="allLoaded" ref="loadmore">
+    <!-- <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-load="allLoaded" ref="loadmore"> -->
       <ul>
-        <li v-for="(value, index) in list" class="news-list" :key="value">
+        <li @click="openNewsDetail(index)" v-for="(value, index) in list" class="news-list" :key="index">
+          <!-- <router-link class="news-list" :to="{name: 'newsDetail', query:{id: index}}"> -->
           <img :src=value.image class="news-list-image">
-          <div class="text_wrap">
-            <p class="news-list-title">{{value.title}}}</p>
-            <p class="news-list-subTitle">{{value.subTitle}}</p>
-            <p class="news-list-date">{{value.date}}</p>
+          <div class="text_wrap ps">
+            <a class="news-list-title ps">{{value.title}}}</a>
+            <a class="news-list-subTitle ps">{{value.subTitle}}</a>
+            <a class="news-list-date ps">{{value.date}}</a>
           </div>
-          <router-link :to="{name: 'newsDetail', query:{id: index}}">查看详情</router-link>
-          <router-link :to="{name: 'newsDetail', params:{id: index}}">查看详情2</router-link>
+          <!-- </router-link> -->
         </li>
         <span></span>
       </ul>
-    </mt-loadmore>
+    <!-- </mt-loadmore> -->
   </div>
 </template>
 
@@ -95,6 +95,12 @@
       },
       allLoaded: function () {
         console.log('加载全部')
+      },
+      openNewsDetail: function (index) {
+          this.$router.push({
+            query:{id: index},
+            name: 'newsDetail'
+          })
       }
     }
   }
@@ -126,6 +132,10 @@
     display: flex;
   }
 
+  a {
+      text-decoration: none!important;
+  }
+
   .news-list-title {
     margin: 10px 10px 0px 10px;
     color: #333333;
@@ -135,6 +145,8 @@
     overflow: hidden;
     height: 40px;
     font-size: 15px;
+          text-decoration: none;
+
   }
 
   .news-list-subTitle {

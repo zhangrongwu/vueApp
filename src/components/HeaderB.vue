@@ -13,7 +13,13 @@
 <script>
   export default {
     name: "HeaderB",
-    props: ['title']
+    props: ['title'],
+    methods: {
+      close() {
+        // 根据浏览器记录返回上一层
+        this.$router.go(-1)
+      }
+    }
   }
 </script>
 

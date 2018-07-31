@@ -1,8 +1,8 @@
 <template>
   <div>
-    <aheader></aheader>
-    <toolBar></toolBar>
-    <viewMain :type="type"  v-bind:textTwo="type" textOne="父组件传值"></viewMain>
+    <!-- <aheader></aheader>
+    <toolBar></toolBar>  -->
+    <view-main :type="type"  v-bind:textTwo="type" textOne="父组件传值"> </view-main>
   </div>
 </template>
 

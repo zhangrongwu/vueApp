@@ -3,7 +3,7 @@
       <div class="header-variation">
         <mt-header title="这是一个正常的导航栏">
           <router-link to="/" slot="left">
-            <mt-button>返回</mt-button>
+            <mt-button >返回</mt-button>
           </router-link>
           <router-link to="/" slot="right">
             <mt-button>关闭</mt-button>
@@ -15,7 +15,13 @@
 
 <script>
     export default {
-        name: "Header"
+        name: "Header",
+        methods: {
+          goBackVue() {
+            alert('sefasd')
+            // this.$router.go(-1)
+          }
+        }
     }
 </script>
 

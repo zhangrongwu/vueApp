@@ -1,6 +1,7 @@
 <template>
   <div>
-    新闻详情
+    <aheader></aheader>
+    新闻详情的id为{{id}}
   </div>
 </template>
 
@@ -8,7 +9,9 @@
   import connect from '../connect.js'
   export default {
     data() {
-      return {}
+      return {
+          id: ''
+      }
     },
     methods: {
       login:function () {
@@ -18,8 +21,7 @@
     created() {
         // 数据初始化 获取路由参数 
         // $route （数据） $router （功能函数）
-        alert(this.$route.params.name)
-        alert(this.$route.query.name)
+        this.id = this.$route.query.id
     },
     mounted() {
 
