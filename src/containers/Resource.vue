@@ -3,6 +3,7 @@
         查找资源
         <button  @click="postHTTP">Post请求</button>
         <button @click="getHTTP">Get请求</button>
+        <button @click="login">登陆icome测试拦截器</button>
     </div>
 </template>
 
@@ -35,6 +36,23 @@ export default {
           this.data = result.data;
         })
         .catch(err => {});
+    },
+   
+   
+   login() {
+        this.$axios.post('/licensor/login', {
+            headers: {
+                username: 'zhangrongwu',
+                password: 'a09876'
+            }
+        })
+        .then(result => {
+            console.log(result.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+       
     }
   },
   created() {}
