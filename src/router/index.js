@@ -9,6 +9,7 @@ import swipe from '@/containers/Swipe'
 import layzLoad from '@/containers/LayzLoad'
 
 import NotFound from '@/containers/notFound'
+import resource from '@/containers/Resource'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
       path: '/newsDetail',
       name: 'newsDetail',
       component: newsDetail
+    },
+    {
+      path: '/resource',
+      name: 'resource',
+      component: resource
     },
     {
       // router重定向

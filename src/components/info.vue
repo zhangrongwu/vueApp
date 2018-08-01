@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <div class="middle_left_menu">
-      <ul v-for="(menu, index) in menus" class="menu">
+      <ul v-for="(menu, index) in menus" class="menu" :key="menu">
         <img :src=menu.img alt="" v-if="!menu.active">
         <img :src=menu.imgs alt="" v-if="menu.active">
         <li :class="{'active' : menu.active}" @click="select(menu, index)">{{menu.menu}}</li>

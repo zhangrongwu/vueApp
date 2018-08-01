@@ -20,6 +20,29 @@ import {Actionsheet} from 'mint-ui'
 import {Swipe, SwipeItem} from 'mint-ui'
 import {Lazyload} from 'mint-ui'
 
+import Axios from 'axios'
+Axios.defaults.baseURL = 'http://182.254.146.100:8899/api'; 
+
+// 可添加默认数据信息
+// 默认设置 范围广
+Axios.defaults.headers = {
+  accept: 'defaults'
+}
+
+// 拦截器对每一次请求都有效
+// 拦截器范围广 权利大，可覆盖默认的
+Axios.interceptors.request.use(function(config) {
+  console.log(config);
+  config.headers = {
+    accept:'defaults'
+  }
+  //必须要return
+  return config;
+})
+Vue.prototype.$axios = Axios;
+
+
+
 Vue.component('toolBar', toolBar);
 Vue.component('viewMain', viewMain);
 Vue.component('aheader', aheader);
