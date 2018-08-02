@@ -19,6 +19,7 @@ import { Actionsheet } from "mint-ui";
 import { Swipe, SwipeItem } from "mint-ui";
 import { Lazyload } from "mint-ui";
 
+// import http from "./services/http";
 
 Vue.component("toolBar", toolBar);
 Vue.component("viewMain", viewMain);
@@ -33,11 +34,7 @@ Vue.component(SwipeItem.name, SwipeItem);
 import defines from "./config";
 Vue.prototype.defines = defines;
 
-// Vue.use(Lazyload, merge({
-//   loading: require('./assets/loading-spin.svg'),
-//   attempt: 3
-// }, config.lazyload));
-/* eslint-disable no-new */
+
 new Vue({
   el: "#app",
   router,

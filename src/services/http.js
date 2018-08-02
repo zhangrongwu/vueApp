@@ -84,4 +84,6 @@ Axios.interceptors.response.use(
   }
 );
 
-Vue.prototype.$axios = Axios;
+// Vue.prototype.$axios = Axios;
+
+export default Axios
