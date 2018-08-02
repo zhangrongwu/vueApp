@@ -43,122 +43,184 @@
     <router-view class="router-v"></router-view>
     <button @click="testParams">点击传参数</button>
     <button @click="notFound">进入404页面</button>
+
+    <div>
+    <input placeholder="输入测试数据" v-model="text">
+    {{text}}
+    <button @click="chanågeMessage">修改文字</button>
+    </div>
+   
+    <div>
+      单价：<input type="text" name='' v-model="price"> *
+      件数：<input type="text" name='' v-model="num"> *
+      折扣：<input type="text" name='' v-model="rate"> = {{sum}} （元）
+    </div>
+
+    <div class="webViewObject">
+      <button @click="openNativeMethod">打开原生界面的方法</button>
+      <button @click="openNativeMethodWithParam()">打开原生界面的方法，带参数</button>
+      <button @click="openNativeMethodWithParams()">打开原生界面的方法，带多个参数</button>
+    </div>
   </div>
 </template>
 
 <script>
-  import info from '../components/info'
-  import {Toast} from 'mint-ui'
-  import {Indicator} from 'mint-ui'
-  import {MessageBox} from 'mint-ui'
+import info from "../components/info";
+import { Toast } from "mint-ui";
+import { Indicator } from "mint-ui";
+import { MessageBox } from "mint-ui";
 
-  export default {
-    components: {
-      info
+export default {
+  components: {
+    info
+  },
+  created() {
+    // alert('开始创建viewMain')
+  },
+  watch: {
+    text: function(newV, oldV) {
+      console.log(newV);
+    }
+  },
+  data() {
+    return {
+      text: "内容",
+      sheetVisible: false,
+      sheetVisible2: false,
+      actions: [],
+      actions2: [],
+      price: 0,
+      num: 0,
+      rate: 0
+    };
+  },
+  methods: {
+    changeMessage: function() {
+      this.text = "修改后的数据";
     },
-    created () {
-      // alert('开始创建viewMain')
-
+    toast: function() {
+      Toast("这是一个toast的效果测试");
     },
-    data() {
-      return {
-        sheetVisible: false,
-        sheetVisible2: false,
-        actions: [],
-        actions2: []
+    indicator0: function() {
+      Indicator.open("数据加载中...");
+    },
+    indicator1: function() {
+      Indicator.open({
+        text: "Loading",
+        spinnerType: "fading-circle"
+      });
+      closeIndicator();
+    },
+    closeIndicator: function() {
+      Indicator.close();
+    },
+    openList: function() {
+      this.$router.push({ name: "messageList" });
+    },
+    messageBox0: function() {
+      MessageBox({
+        title: "Notice",
+        message: "Are you sure?",
+        showCancelButton: true
+      });
+    },
+    messageBox1: function() {
+      MessageBox.prompt("请输入您的姓名").then(({ value, action }) => {
+        Toast(value);
+      });
+    },
+    confirm: function() {
+      MessageBox.confirm("消息", "title").then(action => {
+        Toast("提示");
+      });
+    },
+    takePhoto: function() {
+      console.log("taking photo");
+    },
+    openAlbum: function() {
+      console.log("opening album");
+    },
+    goBack: function() {
+      history.go(-1);
+    },
+    showAction: function() {
+      this.sheetVisible = true;
+    },
+    showAction1: function() {
+      this.sheetVisible2 = true;
+    },
+    openSwipe: function() {
+      this.$router.push({ name: "swipe" });
+    },
+    layzLoad: function() {
+      this.$router.push({ name: "layzLoad" });
+    },
+    openTabbar: function() {
+      this.$router.push({ name: "appTabbar" });
+    },
+    testParams() {
+      this.$router.push({
+        // 传递参数
+        name: "newsDetail",
+        query: { id: 1, name: "query2" },
+        params: { id: 2, name: "params2" }
+      });
+    },
+    notFound() {
+      this.$router.push({ name: "home" });
+    },
+    openNativeMethod: function() {
+      try {
+       vueProject.test();
+      } catch (error) {
+        Toast(error.message)
       }
     },
-    methods: {
-      toast: function () {
-        Toast('这是一个toast的效果测试')
-      },
-      indicator0: function () {
-        Indicator.open('数据加载中...')
-      },
-      indicator1: function () {
-        Indicator.open({
-          text: 'Loading',
-          spinnerType: 'fading-circle'
-        });
-        closeIndicator()
-      },
-      closeIndicator: function () {
-        Indicator.close();
-      },
-      openList: function () {
-        this.$router.push({name: 'messageList'})
-      },
-      messageBox0: function () {
-        MessageBox({
-          title: 'Notice',
-          message: 'Are you sure?',
-          showCancelButton: true,
-        });
-      },
-      messageBox1: function () {
-        MessageBox.prompt('请输入您的姓名').then(({value, action}) =>{
-          Toast(value)
-        });
-      },
-      confirm: function () {
-        MessageBox.confirm('消息', 'title').then(action => {
-          Toast('提示')
-        });
-      },
-      takePhoto: function() {
-        console.log('taking photo');
-      },
-      openAlbum: function() {
-        console.log('opening album');
-      },
-      goBack: function() {
-        history.go(-1);
-      },
-      showAction: function () {
-        this.sheetVisible = true
-      },
-      showAction1: function () {
-        this.sheetVisible2 = true
-      },
-      openSwipe: function () {
-        this.$router.push({name:'swipe'})
-      },
-      layzLoad: function () {
-        this.$router.push({name:'layzLoad'})
-      },
-      openTabbar: function () {
-        this.$router.push({name:'appTabbar'})
-      },
-      testParams() {
-        this.$router.push({
-          // 传递参数
-          name:'newsDetail', query:{id:1, name:'query2'}, params:{id:2,name:'params2'}
-        });
-      },
-      notFound() {
-        this.$router.push({name: 'home'})
+    openNativeMethodWithParam () {
+        try {
+          vueProject.testFunction('这是一个测试数据，希望你能正常接收 - 来自外太空')
+        } catch (error) {
+        Toast(error.message)
+        }
+    }, 
+    openNativeMethodWithParams () {
+      try {
+        vueProject.testFunctionWith('参数1','参数二','不知道这样能不能过去 - 来自外太空的呼唤')
+      } catch (error) {
+        Toast(error.message)
       }
-    },
-    mounted() {
-      this.actions = [{
-        name: '拍照',
+    }
+  },
+  // 计算属性
+  computed: {
+    sum() {
+      return this.price * this.num * this.rate;
+    }
+  },
+  mounted() {
+    this.actions = [
+      {
+        name: "拍照",
         method: this.takePhoto
       },
-        {
-          name: '相册选取图片',
-          method: this.openAlbum
-        }];
-      this.actions2 = [{
-        name: '确定'
+      {
+        name: "相册选取图片",
+        method: this.openAlbum
+      }
+    ];
+    this.actions2 = [
+      {
+        name: "确定"
       },
-        {
-          name: '返回上一步',
-          method: this.goBack
-        }];
-    },
+      {
+        name: "返回上一步",
+        method: this.goBack
+      }
+    ];
+  },
   //  接受伏组件参数值
-    props:['textOne', 'textTwo', 'type']
-  }
+  props: ["textOne", "textTwo", "type"]
+};
 </script>
 
 <style scoped>
@@ -172,5 +234,9 @@
   position: absolute;
   background-color: aliceblue;
 }
-
+.webViewObject {
+  width: 200px;
+  height: 100px;
+  background-color: brown;
+}
 </style>
